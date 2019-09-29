@@ -1,0 +1,10 @@
+package main
+
+import "gobot.io/x/gobot/platforms/dji/tello"
+
+func resetSteering(drone *tello.Driver) {
+	drone.Left(0)
+	drone.Right(0)
+	drone.Up(0)
+	drone.Down(0)
+}
