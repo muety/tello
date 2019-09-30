@@ -86,7 +86,7 @@ func init() {
 func main() {
 	// Init Gobot drivers
 	keys := keyboard.NewDriver()
-	drone := tello.NewDriver("8888")
+	drone := tello.NewDriver("8890")
 
 	work := func() {
 		// Handle keyboard inputs
@@ -96,6 +96,7 @@ func main() {
 		drone.On(tello.FlightDataEvent, handleFlightData(drone))
 		drone.On(tello.ConnectedEvent, handleConnected(drone))
 		drone.On(tello.LandingEvent, handleLanding(drone))
+		drone.On(tello.VideoFrameEvent, handleVideo(drone))
 	}
 
 	robot := gobot.NewRobot(

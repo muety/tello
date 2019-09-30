@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"os/exec"
 	"sync/atomic"
 	"time"
 
 	"github.com/bep/debounce"
+	"gobot.io/x/gobot"
 	"gobot.io/x/gobot/platforms/dji/tello"
 	"gobot.io/x/gobot/platforms/keyboard"
 )
@@ -85,17 +87,43 @@ func handleConnected(drone *tello.Driver) func(interface{}) {
 
 		connected = true
 
-		go func() {
-			for connected {
+		drone.SetVideoEncoderRate(2)
+		gobot.Every(100*time.Millisecond, func() {
+			drone.StartVideo()
+		})
+
+		gobot.Every(time.Duration((1000.0/tickRate))*time.Millisecond, func() {
+			if connected {
 				tick(drone)
-				time.Sleep(time.Duration((1000.0 / tickRate)) * time.Millisecond)
 			}
-		}()
+		})
 	}
 }
 
 func handleLanding(drone *tello.Driver) func(interface{}) {
 	return func(data interface{}) {
 		fmt.Println("Drone is landing ...")
+	}
+}
+
+func handleVideo(drone *tello.Driver) func(interface{}) {
+	mplayer := exec.Command("mplayer", "-fps", "20", "-")
+
+	videoIn, err := mplayer.StdinPipe()
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+
+	if err := mplayer.Start(); err != nil {
+		fmt.Println(err)
+		return nil
+	}
+
+	return func(data interface{}) {
+		pkt := data.([]byte)
+		if _, err := videoIn.Write(pkt); err != nil {
+			fmt.Println(err)
+		}
 	}
 }
