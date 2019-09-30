@@ -26,7 +26,7 @@ func handleKeyboardInput(drone *tello.Driver) func(interface{}) {
 				cc := atomic.LoadInt32(&currentControl)
 
 				if cc == -1 {
-					steeringDebounce = debounce.New(500 * time.Millisecond)
+					steeringDebounce = debounce.New(debounceTimeout)
 				}
 
 				atomic.StoreInt32(&currentControl, int32(key))

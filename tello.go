@@ -32,12 +32,12 @@ func tick(drone *tello.Driver) {
 		return
 	}
 
-	if cc == keyboard.ArrowLeft {
+	if cc == keyboard.A {
 		fmt.Println("Going left.")
 		if !dry {
 			drone.Left(intensity)
 		}
-	} else if cc == keyboard.ArrowRight {
+	} else if cc == keyboard.D {
 		fmt.Println("Going right.")
 		if !dry {
 			drone.Right(intensity)
@@ -61,6 +61,16 @@ func tick(drone *tello.Driver) {
 		fmt.Println("Going backward.")
 		if !dry {
 			drone.Backward(intensity)
+		}
+	} else if cc == keyboard.ArrowLeft {
+		fmt.Println("Rotating counter-clockwise.")
+		if !dry {
+			drone.CounterClockwise(intensity)
+		}
+	} else if cc == keyboard.ArrowRight {
+		fmt.Println("Rotating clockwise.")
+		if !dry {
+			drone.Clockwise(intensity)
 		}
 	} else {
 		fmt.Println("Resetting steering.")

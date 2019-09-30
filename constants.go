@@ -1,10 +1,15 @@
 package main
 
-import "gobot.io/x/gobot/platforms/keyboard"
+import (
+	"time"
+
+	"gobot.io/x/gobot/platforms/keyboard"
+)
 
 const (
-	intensity int = 50
-	tickRate  int = 10
+	intensity       int           = 75
+	tickRate        int           = 10                     // fps
+	debounceTimeout time.Duration = 500 * time.Millisecond // ms
 )
 
 var controlCommands = []int{
@@ -13,5 +18,7 @@ var controlCommands = []int{
 	keyboard.ArrowUp,
 	keyboard.ArrowDown,
 	keyboard.W,
+	keyboard.A,
 	keyboard.S,
+	keyboard.D,
 }

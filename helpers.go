@@ -9,4 +9,6 @@ func resetSteering(drone *tello.Driver) {
 	drone.Down(0)
 	drone.Forward(0)
 	drone.Backward(0)
+	drone.Clockwise(0)
+	drone.CounterClockwise(0)
 }
