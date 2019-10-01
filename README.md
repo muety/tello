@@ -2,7 +2,9 @@
 
 Basic Go code to control a DJI Tello drone via keyboard using [Gobot](https://gobot.io). Inspired by ["Hello, Tello - Hacking Drones With Go"](https://gobot.io/blog/2018/04/20/hello-tello-hacking-drones-with-go/).
 
-![](https://qvc.scene7.com/is/image/QVC/e/05/e293905.001?$uspdlarge$)
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoff.ee/n1try)
+
+![](https://muetsch.io/images/tello1.jpg)
 
 ## Requirements
 * Go 1.13
@@ -17,5 +19,4 @@ Basic Go code to control a DJI Tello drone via keyboard using [Gobot](https://go
 ## To Do
 * Multi-key support
 
-## Me at Work
-![](https://anchr.io/i/mWvTN.png)
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoff.ee/n1try)
